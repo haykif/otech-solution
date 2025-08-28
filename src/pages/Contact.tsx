@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,6 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import Map from "@/components/home/Map";
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -18,8 +20,14 @@ const Contact = () => {
     service: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Initialiser EmailJS
+  useEffect(() => {
+    emailjs.init('ja_T6EtLaYRHlECtz');
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Simple validation
@@ -32,20 +40,64 @@ const Contact = () => {
       return;
     }
 
-    // Simulate form submission
-    toast({
-      title: "Message envoyé !",
-      description: "Nous vous recontacterons dans les plus brefs délais."
-    });
+    setIsSubmitting(true);
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      service: "",
-      message: ""
-    });
+    try {
+      // Nettoyer le numéro de téléphone (enlever le 0 et formater)
+      const cleanPhone = formData.phone ? 
+        formData.phone.replace(/^0/, '+33 ').replace(/\s/g, '') : 
+        "Non renseigné";
+
+      // Email de notification à Otech
+      await emailjs.send(
+        'Otechmailer',
+        'otech_notification_id', // Vous devrez créer ce template
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: cleanPhone,
+          service: formData.service || "Non spécifié",
+          message: formData.message
+        },
+        'ja_T6EtLaYRHlECtz'
+      );
+
+      // Email de confirmation à l'expéditeur
+      await emailjs.send(
+        'Otechmailer',
+        'otech_confirmation_id', // Vous devrez créer ce template
+        {
+          name: formData.name,
+          email: formData.email,
+          service: formData.service || "Non spécifié"
+        },
+        'ja_T6EtLaYRHlECtz'
+      );
+
+      toast({
+        title: "Message envoyé !",
+        description: "Nous vous recontacterons dans les plus brefs délais. Un email de confirmation vous a été envoyé."
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: ""
+      });
+
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi:', error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer ou nous contacter directement.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -56,22 +108,22 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Téléphone",
-      details: "+33 1 23 45 67 89",
+      details: "+33 7 69 39 22 14",
       description: "Service d'urgence 24h/24",
-      link: "tel:+33123456789"
+      link: "tel:+33769392214"
     },
     {
       icon: Mail,
       title: "Email",
-      details: "contact@otech-solution.fr",
-      description: "Réponse sous 24h",
-      link: "mailto:contact@otech-solution.fr"
+      details: "contact@otech-solution.com",
+      description: "Réponse entre 24h et 48h",
+      link: "mailto:contact@otech-solution.com"
     },
     {
       icon: MapPin,
       title: "Adresse",
-      details: "123 Avenue de l'Innovation, 75001 Paris",
-      description: "Zone d'intervention : Île-de-France",
+      details: "1 Rue Raymond Poincaré, 74300 Cluses",
+      description: "Zone d'intervention : Haute-Savoie",
       link: "https://maps.google.com"
     },
     {
@@ -137,6 +189,40 @@ const Contact = () => {
       <section className="section-padding">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Map Section */}
+            <div>
+              <Card className="shadow-medium">
+                <CardHeader>
+                  <CardTitle className="text-2xl font-bold text-foreground">
+                    Notre zone d'intervention
+                  </CardTitle>
+                  <p className="text-muted-foreground">
+                    Découvrez notre zone de couverture en Haute-Savoie et les environs
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <Map />
+                  <div className="mt-6 space-y-4">
+                    <h4 className="font-semibold text-foreground">Zones couvertes :</h4>
+                    <ul className="text-sm text-muted-foreground space-y-1">
+                      <li>• Cluses</li>
+                      <li>• Bonneville</li>
+                      <li>• Thonon-les-Bains</li>
+                      <li>• Annecy</li>
+                      <li>• La Roche-sur-Foron</li>
+                      <li>• Annemasse</li>
+                      <li>• La Clusaz</li>
+                      <li>• Samoëns</li>
+                      <li>• Sallanches</li>
+                      <li>• Chamonix-Mont-Blanc</li>
+                      <li>• Megeve</li>
+                      <li>• ...</li>
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
             {/* Contact Form */}
             <div>
               <Card className="shadow-medium">
@@ -220,9 +306,21 @@ const Contact = () => {
                       />
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full btn-hero group">
-                      <Send className="mr-2 h-5 w-5" />
-                      Envoyer ma demande
+                    <Button type="submit" size="lg" className="w-full btn-hero group" disabled={isSubmitting}>
+                      {isSubmitting ? (
+                        <>
+                          <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Envoi en cours...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="mr-2 h-5 w-5" />
+                          Envoyer ma demande
+                        </>
+                      )}
                     </Button>
 
                     <p className="text-sm text-muted-foreground text-center">
@@ -231,44 +329,9 @@ const Contact = () => {
                   </form>
                 </CardContent>
               </Card>
-            </div>
-
-            {/* Map and Additional Info */}
-            <div className="space-y-8">
-              {/* Map Placeholder */}
-              <Card className="shadow-medium">
-                <CardHeader>
-                  <CardTitle className="text-xl font-bold text-foreground">
-                    Zone d'intervention
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="w-full h-64 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center border border-border">
-                    <div className="text-center">
-                      <MapPin className="h-12 w-12 text-primary mx-auto mb-4" />
-                      <p className="text-lg font-semibold text-foreground mb-2">
-                        Île-de-France
-                      </p>
-                      <p className="text-muted-foreground">
-                        Paris et banlieue dans un rayon de 50km
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-6 space-y-4">
-                    <h4 className="font-semibold text-foreground">Zones couvertes :</h4>
-                    <ul className="text-sm text-muted-foreground space-y-1">
-                      <li>• Paris (tous arrondissements)</li>
-                      <li>• Hauts-de-Seine (92)</li>
-                      <li>• Seine-Saint-Denis (93)</li>
-                      <li>• Val-de-Marne (94)</li>
-                      <li>• Seine-et-Marne (77) - partie ouest</li>
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
 
               {/* FAQ */}
-              <Card className="shadow-medium">
+              <Card className="shadow-medium mt-8">
                 <CardHeader>
                   <CardTitle className="text-xl font-bold text-foreground">
                     Questions fréquentes

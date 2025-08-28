@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Droplets, Zap, Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,8 +12,11 @@ const Footer = () => {
           <div className="space-y-4">
             <Link to="/" className="flex items-center space-x-2 group">
               <div className="flex items-center space-x-1">
-                <Droplets className="h-8 w-8 text-primary group-hover:text-accent transition-colors duration-300" />
-                <Zap className="h-6 w-6 text-energy group-hover:text-accent transition-colors duration-300" />
+                <img 
+                  src="/assets/otech_logo.webp" 
+                  alt="Logo Otech" 
+                  className="h-8 w-8 group-hover:opacity-80 transition-opacity duration-300" 
+                />
               </div>
               <div className="flex flex-col">
                 <span className="logo-text text-xl text-primary group-hover:text-accent transition-colors duration-300">
@@ -81,17 +84,17 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="h-4 w-4 text-primary" />
-                <span className="text-sm text-muted-foreground">+33 1 23 45 67 89</span>
+                <span className="text-sm text-muted-foreground">+33 7 69 39 22 14</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-primary" />
-                <span className="text-sm text-muted-foreground">contact@otech-solution.fr</span>
+                <span className="text-sm text-muted-foreground">contact@otech-solution.com</span>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="h-4 w-4 text-primary mt-0.5" />
                 <span className="text-sm text-muted-foreground">
-                  123 Avenue de l'Innovation<br />
-                  75001 Paris, France
+                  1 Rue Raymond Poincaré<br />
+                  74300 Cluses
                 </span>
               </div>
               <div className="flex items-center space-x-3">

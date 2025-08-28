@@ -27,33 +27,18 @@ const About = () => {
   ];
 
   const stats = [
-    { icon: Users, number: "500+", label: "Clients satisfaits" },
-    { icon: Award, number: "15+", label: "Années d'expérience" },
-    { icon: CheckCircle, number: "1000+", label: "Projets réalisés" },
+    { icon: Users, number: "3000+", label: "Clients satisfaits" },
+    { icon: Award, number: "25+", label: "Années d'expérience" },
+    { icon: CheckCircle, number: "1500+", label: "Projets réalisés" },
     { icon: Clock, number: "24/7", label: "Service d'urgence" },
   ];
 
   const team = [
     {
-      name: "Jean Dupont",
+      name: "Omer Aydogdu",
       role: "Fondateur & Directeur",
-      experience: "15 ans d'expérience",
+      experience: "25 ans d'expérience",
       speciality: "Expert en plomberie industrielle",
-      description: "Passionné par l'innovation dans le secteur de l'eau et de l'énergie."
-    },
-    {
-      name: "Marie Lambert",
-      role: "Responsable Technique",
-      experience: "12 ans d'expérience",
-      speciality: "Spécialiste traitement de l'eau",
-      description: "Experte en solutions de filtration et purification avancées."
-    },
-    {
-      name: "Pierre Moreau",
-      role: "Technicien Senior",
-      experience: "10 ans d'expérience",
-      speciality: "Systèmes énergétiques",
-      description: "Spécialisé dans l'installation de pompes à chaleur et systèmes éco-énergétiques."
     }
   ];
 
@@ -66,7 +51,7 @@ const About = () => {
             À propos d'O TECH Solution
           </h1>
           <p className="text-xl md:text-2xl max-w-3xl mx-auto text-white/90">
-            15 ans d'expertise au service de votre confort et de vos économies d'énergie
+            25 ans d'expertise au service de votre confort et de vos économies d'énergie
           </p>
         </div>
       </section>
@@ -81,19 +66,12 @@ const About = () => {
               </h2>
               <div className="space-y-6">
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Fondée en 2009 par Jean Dupont, O TECH Solution est née d'une vision simple : 
-                  démocratiser l'accès à des solutions durables de gestion de l'eau et de l'énergie 
-                  pour tous.
+                  Fondée en 2024 par Omer Aydogdu à Cluses (74), O TECH Solution est le successeur des ex-EI "Eco-Plomberie" et "EcoTech".
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Ce qui a commencé comme une petite entreprise de plomberie locale s'est transformé 
-                  en un acteur reconnu de l'optimisation énergétique, sans jamais perdre de vue nos 
-                  valeurs fondamentales : proximité, qualité et respect de l'environnement.
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Aujourd'hui, notre équipe de spécialistes accompagne particuliers et professionnels 
-                  dans la transition vers des installations plus efficaces et plus respectueuses de 
-                  l'environnement.
+                L’entreprise allie expertise en plomberie traditionnelle et solutions modernes
+                d’efficacité énergétique pour offrir à ses clients particuliers comme professionnels
+                des services fiables, durables et respectueux de l’environnement.
                 </p>
               </div>
             </div>
@@ -187,9 +165,6 @@ const About = () => {
                   </p>
                   <p className="text-sm font-medium text-accent mb-4">
                     {member.speciality}
-                  </p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {member.description}
                   </p>
                 </CardContent>
               </Card>

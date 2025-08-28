@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Droplets, Zap, Shield } from "lucide-react";
-import heroImage from "@/assets/hero-image.jpg";
+import heroImage from "@/assets/hero-image.png";
 
 const HeroSection = () => {
   return (
@@ -13,30 +13,29 @@ const HeroSection = () => {
           alt="O TECH Solution - Solutions durables pour l'eau et l'énergie"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary/60 to-accent/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/30"></div>
       </div>
 
       {/* Content */}
       <div className="relative z-10 container-max text-center text-white">
         <div className="max-w-4xl mx-auto space-y-8">
-          {/* Logo and Company Name */}
-          <div className="flex justify-center items-center space-x-4 mb-6">
-            <div className="flex items-center space-x-2">
-              <Droplets className="h-16 w-16 text-white drop-shadow-lg" />
-              <Zap className="h-12 w-12 text-energy-foreground drop-shadow-lg" />
+
+          {/* Main Title with Logo */}
+          <div className="flex items-center justify-center space-x-6 mb-4">
+            <img 
+              src="/assets/otech_logo.webp" 
+              alt="Logo Otech" 
+              className="h-14 w-14 md:h-28 md:w-28 drop-shadow-lg" 
+            />
+            <div className="flex flex-col items-start">
+              <h1 className="logo-text text-4xl md:text-8xl font-bold drop-shadow-xl">
+                O TECH Solution
+              </h1>
+              <p className="slogan-text text-1xl md:text-3xl font-medium drop-shadow-lg -mt-2">
+                Eau maîtrisée, énergie optimisée
+              </p>
             </div>
           </div>
-
-          {/* Main Title */}
-          <h1 className="logo-text text-6xl md:text-8xl font-bold mb-4 drop-shadow-xl">
-            O TECH
-            <span className="block text-4xl md:text-6xl mt-2">Solution</span>
-          </h1>
-
-          {/* Slogan */}
-          <p className="slogan-text text-2xl md:text-3xl font-medium mb-8 drop-shadow-lg">
-            Eau maîtrisée, énergie optimisée
-          </p>
 
           {/* Description */}
           <p className="text-lg md:text-xl max-w-2xl mx-auto mb-12 text-white/90 leading-relaxed">
@@ -53,7 +52,7 @@ const HeroSection = () => {
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
+            <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary transition-all duration-300 bg-transparent">
               <Link to="/contact">
                 Devis gratuit
               </Link>

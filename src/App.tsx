@@ -8,6 +8,8 @@ import Services from "./pages/Services";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import "leaflet/dist/leaflet.css";
+
 
 const queryClient = new QueryClient();
 

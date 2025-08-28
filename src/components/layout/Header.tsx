@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Droplets, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Header = () => {
@@ -18,13 +18,16 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container-max">
+      <div className="container-max px-4 md:px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
+          <Link to="/" className="flex items-center space-x-2 group pl-2 md:pl-0">
             <div className="flex items-center space-x-1">
-              <Droplets className="h-8 w-8 text-primary group-hover:text-accent transition-colors duration-300" />
-              <Zap className="h-6 w-6 text-energy group-hover:text-accent transition-colors duration-300" />
+              <img 
+                src="/assets/otech_logo.webp" 
+                alt="Logo Otech" 
+                className="h-8 w-8 group-hover:opacity-80 transition-opacity duration-300" 
+              />
             </div>
             <div className="flex flex-col">
               <span className="logo-text text-xl text-primary group-hover:text-accent transition-colors duration-300">
