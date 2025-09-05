@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, AlertOctagon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Header = () => {
@@ -21,12 +21,12 @@ const Header = () => {
       <div className="container-max px-4 md:px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group pl-2 md:pl-0">
+          <Link to="/" className="flex items-center space-x-1 group pl-2 md:pl-0">
             <div className="flex items-center space-x-1">
-              <img 
-                src="/assets/otech_logo.webp" 
-                alt="Logo Otech" 
-                className="h-8 w-8 group-hover:opacity-80 transition-opacity duration-300" 
+              <img
+                src="/assets/otech_logo.webp"
+                alt="Logo Otech"
+                className="h-8 w-8 group-hover:opacity-80 transition-opacity duration-300"
               />
             </div>
             <div className="flex flex-col">
@@ -39,7 +39,7 @@ const Header = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
               <Link
@@ -57,29 +57,40 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex">
-            <Button asChild variant="default" className="btn-secondary">
-              <Link to="/contact">Devis gratuit</Link>
+          {/* Right side (desktop + mobile) */}
+          <div className="flex items-center space-x-3">
+            {/* CTA Devis (desktop only) */}
+            <div className="hidden md:flex">
+              <Button asChild variant="default" className="btn-secondary">
+                <Link to="/contact">Devis gratuit</Link>
+              </Button>
+            </div>
+
+            {/* Urgence (always visible, desktop + mobile) */}
+            <a
+              href="tel:+33767713317"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-700 transition-colors"
+              aria-label="Appeler en urgence O TECH au 07 67 71 33 17"
+              title="Urgence 7/7 — 07 67 71 33 17"
+            >
+              <AlertOctagon className="h-4 w-4" aria-hidden="true" />
+              <span className="hidden sm:inline">Urgence 7/7</span>
+              <span className="tabular-nums">07 67 71 33 17</span>
+            </a>
+
+            {/* Mobile menu button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="md:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
-
-          {/* Mobile menu button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? (
-              <X className="h-5 w-5" />
-            ) : (
-              <Menu className="h-5 w-5" />
-            )}
-          </Button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile navigation (menu) */}
         {isMenuOpen && (
           <div className="md:hidden border-t border-border/40">
             <div className="px-2 pt-2 pb-3 space-y-1">

@@ -106,11 +106,11 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: Phone,
+      icon: Phone, 
       title: "Téléphone",
-      details: "+33 7 69 39 22 14",
+      details: "07 67 71 33 17",
       description: "Service d'urgence 24h/24",
-      link: "tel:+33769392214"
+      link: "tel:0767713317"
     },
     {
       icon: Mail,
@@ -121,10 +121,17 @@ const Contact = () => {
     },
     {
       icon: MapPin,
-      title: "Adresse",
-      details: "1 Rue Raymond Poincaré, 74300 Cluses",
-      description: "Zone d'intervention : Haute-Savoie",
-      link: "https://maps.google.com"
+      title: "Adresses",
+      details: "Nos bureaux et points d'intervention",
+      description: "Cluses et Annemasse",
+      links: [
+        "https://www.google.com/maps/search/?api=1&query=1%20Rue%20Raymond%20Poincar%C3%A9%2C%2074300%20Cluses",
+        "https://www.google.com/maps/search/?api=1&query=3%20Rue%20des%20Fr%C3%A8res%20Tassil%2C%2074100%20Annemasse"
+      ],
+      labels: [
+        "1 Rue Raymond Poincaré, 74300 Cluses",
+        "3 Rue des Frères Tassil, 74100 Annemasse"
+      ]
     },
     {
       icon: Clock,
@@ -139,7 +146,9 @@ const Contact = () => {
     <Layout>
       {/* Hero Section */}
       <section className="relative bg-gradient-hero text-white py-24">
-        <div className="container-max text-center">
+        <div className="absolute inset-0 bg-black/30"></div>
+
+        <div className="relative container-max text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
             Contactez-nous
           </h1>
@@ -149,12 +158,15 @@ const Contact = () => {
         </div>
       </section>
 
+
       {/* Contact Info Section */}
       <section className="section-padding bg-gradient-to-br from-primary/5 to-accent/10">
         <div className="container-max">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {contactInfo.map((info, index) => {
-              const IconComponent = info.icon;
+              const IconComponent = info.icon as any;
+              const links = (info as any).links as string[] | undefined;
+              const labels = (info as any).labels as string[] | undefined;
               return (
                 <Card key={index} className="service-card text-center border-0 group">
                   <CardContent className="p-6">
@@ -164,10 +176,26 @@ const Contact = () => {
                     <h3 className="text-lg font-semibold text-foreground mb-2">
                       {info.title}
                     </h3>
-                    {info.link ? (
+                    {links && labels ? (
+                      <div className="flex flex-col items-center gap-1">
+                        {links.map((href, i) => (
+                          <a
+                            key={href}
+                            href={href}
+                            className="text-primary font-medium hover:text-accent transition-colors"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {labels[i]}
+                          </a>
+                        ))}
+                      </div>
+                    ) : info.link ? (
                       <a
-                        href={info.link}
+                        href={(info as any).link}
                         className="text-primary font-medium hover:text-accent transition-colors"
+                        target={info.title === 'Email' ? undefined : "_blank"}
+                        rel={info.title === 'Email' ? undefined : "noreferrer"}
                       >
                         {info.details}
                       </a>
@@ -270,7 +298,7 @@ const Contact = () => {
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => handleInputChange("phone", e.target.value)}
-                          placeholder="+33 1 23 45 67 89"
+                          placeholder="01 23 45 67 89"
                         />
                       </div>
                       <div className="space-y-2">

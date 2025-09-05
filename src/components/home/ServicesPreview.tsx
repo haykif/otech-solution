@@ -1,33 +1,33 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Wrench, Droplets, Thermometer, Settings, ArrowRight } from "lucide-react";
+import { Wrench, Thermometer, Settings, ArrowRight, AlertTriangle } from "lucide-react";
 
 const ServicesPreview = () => {
   const services = [
     {
       icon: Wrench,
-      title: "Plomberie & Installation",
+      title: "Plomberie & Installation Sanitaire",
       description: "Installation et réparation de systèmes de plomberie pour particuliers et professionnels. Expertise garantie et matériaux de qualité.",
-      features: ["Installation complète", "Réparations urgentes", "Maintenance préventive"]
+      features: ["Installation tuyauterie", "Pose de robinetterie", "Réparations"]
     },
     {
-      icon: Droplets,
-      title: "Traitement de l'Eau",
-      description: "Systèmes de filtration et purification d'eau. Solutions sur mesure pour une eau pure et saine dans votre logement ou entreprise.",
-      features: ["Filtration avancée", "Purification UV", "Systèmes adoucissement"]
+      icon: AlertTriangle,
+      title: "Dépannage URGENT 7j/7",
+      description: "Réactivité maximale face aux urgences plomberie et pannes. Notre équipe sécurise vos équipements et assure une remise en service rapide et fiable.",
+      features: ["Fuites", "Intervention rapide", "Sécurisation installations"]
     },
     {
       icon: Thermometer,
       title: "Systèmes Énergétiques",
       description: "Solutions de chauffage éco-responsables et systèmes d'optimisation énergétique pour réduire votre consommation.",
-      features: ["Chauffage efficace", "Pompes à chaleur", "Optimisation énergétique"]
+      features: ["Chauffage efficace", "Pompes à chaleur", "Optimisation énergétique", "Climatiseur"]
     },
     {
       icon: Settings,
       title: "Maintenance Préventive",
-      description: "Programmes de maintenance régulière pour assurer la longévité et l'efficacité de vos installations.",
-      features: ["Contrôles réguliers", "Diagnostic complet", "Conseils personnalisés"]
+      description: "Maintenance planifiée pour prolonger la durée de vie de vos équipements, assurer leur performance et optimiser leur efficacité.",
+      features: ["Contrôles réguliers", "Diagnostic intégrale", "Conseils personnalisés"]
     }
   ];
 
@@ -46,11 +46,12 @@ const ServicesPreview = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {services.map((service, index) => {
-            const IconComponent = service.icon;
+            const IconComponent = service.icon as any;
+            const isUrgence = service.title.toLowerCase().includes("dépannage");
             return (
               <Card key={index} className="service-card group border-0">
                 <CardHeader className="text-center pb-4">
-                  <div className="mx-auto w-16 h-16 rounded-full bg-gradient-primary flex items-center justify-center mb-4 group-hover:shadow-glow transition-all duration-300">
+                  <div className={`mx-auto w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:shadow-glow transition-all duration-300 ${isUrgence ? 'bg-red-600' : 'bg-gradient-primary'}`}>
                     <IconComponent className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="text-xl font-semibold text-foreground">
@@ -63,8 +64,8 @@ const ServicesPreview = () => {
                   </p>
                   <ul className="space-y-2">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="text-sm text-muted-foreground flex items-center justify-center">
-                        <div className="w-2 h-2 rounded-full bg-primary mr-2"></div>
+                      <li key={idx} className="text-sm text-muted-foreground flex items-center justify-rifht">
+                        <div className={`w-2 h-2 rounded-full mr-2 ${isUrgence ? 'bg-red-600' : 'bg-primary'}`}></div>
                         {feature}
                       </li>
                     ))}

@@ -4,9 +4,9 @@ import { CheckCircle, Users, Award, Clock } from "lucide-react";
 
 const AboutPreview = () => {
   const stats = [
-    { icon: Users, number: "500+", label: "Clients satisfaits" },
-    { icon: Award, number: "15+", label: "Années d'expérience" },
-    { icon: CheckCircle, number: "1000+", label: "Projets réalisés" },
+    { icon: Users, number: "3000+", label: "Clients satisfaits" },
+    { icon: Award, number: "25+", label: "Années d'expérience" },
+    { icon: CheckCircle, number: "1500+", label: "Projets réalisés" },
     { icon: Clock, number: "24/7", label: "Service d'urgence" },
   ];
 
@@ -21,11 +21,11 @@ const AboutPreview = () => {
                 À propos d'O TECH Solution
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed mb-6">
-                Depuis plus de 15 ans, O TECH Solution accompagne particuliers et professionnels 
+                O TECH Solution accompagne particuliers et professionnels, avec plus de 25 ans d'expertise,  
                 dans la maîtrise de leur consommation d'eau et d'énergie.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Notre expertise en plomberie traditionnelle s'enrichit constamment d'innovations 
+                Notre professionnalisme en plomberie traditionnelle s'enrichit constamment d'innovations 
                 technologiques pour vous proposer des solutions durables, économiques et 
                 respectueuses de l'environnement.
               </p>
@@ -50,7 +50,7 @@ const AboutPreview = () => {
 
             <Button asChild size="lg" className="btn-secondary">
               <Link to="/about">
-                En savoir plus sur notre équipe
+                En savoir plus sur nous
               </Link>
             </Button>
           </div>

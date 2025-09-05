@@ -40,30 +40,13 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-foreground">Navigation</h3>
             <nav className="space-y-2">
-              <Link
-                to="/"
-                className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                Accueil
-              </Link>
-              <Link
-                to="/services"
-                className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                Services
-              </Link>
-              <Link
-                to="/about"
-                className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                À propos
-              </Link>
-              <Link
-                to="/contact"
-                className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                Contact
-              </Link>
+              <Link to="/" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Accueil</Link>
+              
+              <Link to="/services" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Services</Link>
+              
+              <Link to="/about" className="block text-sm text-muted-foreground hover:text-primary transition-colors">À propos</Link>
+              
+              <Link to="/contact" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Contact</Link>
             </nav>
           </div>
 
@@ -71,8 +54,8 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-foreground">Nos Services</h3>
             <nav className="space-y-2">
-              <p className="text-sm text-muted-foreground">Plomberie & Installation</p>
-              <p className="text-sm text-muted-foreground">Traitement de l'eau</p>
+              <p className="text-sm text-muted-foreground">Plomberie & Installation Sanitaire</p>
+              <p className="text-sm text-muted-foreground">Dépannage <span className="text-red-500 font-bold">URGENT</span> 7j/7</p>
               <p className="text-sm text-muted-foreground">Systèmes énergétiques</p>
               <p className="text-sm text-muted-foreground">Maintenance préventive</p>
             </nav>
@@ -84,11 +67,11 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="h-4 w-4 text-primary" />
-                <span className="text-sm text-muted-foreground">+33 7 69 39 22 14</span>
+                <Link to="tel:0767713317" className="text-sm text-muted-foreground">07 67 71 33 17</Link>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-primary" />
-                <span className="text-sm text-muted-foreground">contact@otech-solution.com</span>
+                <Link to="mailto:contact@otech-solution.com" className="text-sm text-muted-foreground">contact@otech-solution.com</Link>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="h-4 w-4 text-primary mt-0.5" />
@@ -97,9 +80,12 @@ const Footer = () => {
                   74300 Cluses
                 </span>
               </div>
-              <div className="flex items-center space-x-3">
-                <Clock className="h-4 w-4 text-primary" />
-                <span className="text-sm text-muted-foreground">Lun-Ven: 8h-18h</span>
+              <div className="flex items-start space-x-3">
+                <MapPin className="h-4 w-4 text-primary mt-0.5" />
+                <span className="text-sm text-muted-foreground">
+                  3 Rue des Frères Tassil<br />
+                  74100 Annemasse
+                </span>
               </div>
             </div>
           </div>

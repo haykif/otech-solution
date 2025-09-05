@@ -2,48 +2,48 @@ import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { Wrench, Droplets, Thermometer, Settings, Check, ArrowRight } from "lucide-react";
+import { Wrench, Thermometer, Settings, Check, ArrowRight, AlertTriangle } from "lucide-react";
 import plumbingImage from "@/assets/plumbing-service.jpg";
-import waterTreatmentImage from "@/assets/water-treatment.jpg";
-import heatingImage from "@/assets/heating-system.jpg";
-import maintenanceImage from "@/assets/maintenance-service.jpg";
+import tapisBleu from "@/assets/tapis_bleu.webp";
+import chaufferieGeant from "@/assets/chaufferie_geant.webp";
+import cabineMagenta from "@/assets/cabine-magenta.webp";
 
 const Services = () => {
   const services = [
     {
       icon: Wrench,
       title: "Plomberie & Installation",
-      image: plumbingImage,
+      image: tapisBleu,
       description: "Installation et réparation complète de systèmes de plomberie pour particuliers et professionnels. Notre équipe d'experts intervient rapidement avec des matériaux de haute qualité.",
       features: [
         "Installation de sanitaires et robinetterie",
         "Réparation de fuites et canalisations",
         "Mise en conformité des installations",
-        "Dépannage d'urgence 24h/24",
+        "Adoucisseurs d'eau performants",
         "Raccordement eau chaude/froide",
         "Installation de chauffe-eau"
       ],
       price: "À partir de 80€"
     },
     {
-      icon: Droplets,
-      title: "Traitement de l'Eau",
-      image: waterTreatmentImage,
-      description: "Solutions complètes de filtration et purification d'eau. Nous analysons la qualité de votre eau et proposons des systèmes adaptés à vos besoins spécifiques.",
+      icon: AlertTriangle,
+      title: "Dépannage d'urgence 7j/7",
+      image: plumbingImage,
+      description: "Intervention express pour pannes et fuites critiques: détection, sécurisation et remise en service. Nous intervenons 7j/7 pour limiter les dégâts et rétablir la situation.",
       features: [
-        "Analyse gratuite de la qualité de l'eau",
-        "Systèmes de filtration sur mesure",
-        "Adoucisseurs d'eau performants",
-        "Purification par UV et ozonation",
-        "Maintenance des équipements",
-        "Conseil en optimisation"
+        "Recherche et réparation de fuites",
+        "Dégorgement et débouchage canalisations",
+        "Sécurisation des installations",
+        "Remplacement express de pièces",
+        "Mise hors d'eau / hors gel",
+        "Intervention sous 2h selon zone"
       ],
-      price: "À partir de 300€"
+      price: "À partir de 90€"
     },
     {
       icon: Thermometer,
       title: "Systèmes Énergétiques",
-      image: heatingImage,
+      image: chaufferieGeant,
       description: "Installation et optimisation de systèmes de chauffage éco-responsables. Réduisez votre consommation énergétique avec nos solutions innovantes.",
       features: [
         "Pompes à chaleur haute performance",
@@ -58,13 +58,11 @@ const Services = () => {
     {
       icon: Settings,
       title: "Maintenance Préventive",
-      image: maintenanceImage,
+      image: cabineMagenta,
       description: "Programmes de maintenance personnalisés pour assurer la longévité et l'efficacité optimale de toutes vos installations eau et énergie.",
       features: [
-        "Contrôles périodiques programmés",
         "Diagnostic complet des installations",
-        "Nettoyage et entretien spécialisé",
-        "Remplacement préventif de pièces",
+        "Entretien spécialisé",
         "Conseils d'utilisation optimale",
         "Rapport détaillé après intervention"
       ],
@@ -76,16 +74,23 @@ const Services = () => {
     <Layout>
       {/* Hero Section */}
       <section className="relative bg-gradient-hero text-white py-24">
-        <div className="container-max text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Nos Services
-          </h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto text-white/90">
-            Solutions complètes pour tous vos besoins en plomberie, 
-            traitement de l'eau et optimisation énergétique
-          </p>
+        <div className="absolute inset-0 bg-black/30"></div>
+
+        <div className="relative container-max text-center">
+          <div className="max-w-4xl mx-auto space-y-6">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              Nos Services
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
+              Solutions complètes pour tous vos besoins en plomberie, 
+              traitement de l'eau et optimisation énergétique
+            </p>
+          </div>
         </div>
       </section>
+
+
+
 
       {/* Services Grid */}
       <section className="section-padding">
@@ -94,6 +99,7 @@ const Services = () => {
             {services.map((service, index) => {
               const IconComponent = service.icon;
               const isEven = index % 2 === 0;
+              const isUrgence = service.title.toLowerCase().includes("dépannage");
               
               return (
                 <div key={index} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${!isEven ? 'lg:grid-flow-row-dense' : ''}`}>
@@ -112,8 +118,8 @@ const Services = () => {
                   {/* Content */}
                   <div className={`space-y-6 ${!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
                     <div className="flex items-center space-x-4">
-                      <div className="w-16 h-16 rounded-full bg-gradient-primary flex items-center justify-center">
-                        <IconComponent className="h-8 w-8 text-white" />
+                      <div className={`w-16 h-16 rounded-full flex items-center justify-center ${isUrgence ? 'bg-red-600' : 'bg-gradient-primary'}`}>
+                        <IconComponent className={`h-8 w-8 ${isUrgence ? 'text-white' : 'text-white'}`} />
                       </div>
                       <div>
                         <h2 className="text-3xl font-bold text-foreground">
@@ -138,7 +144,7 @@ const Services = () => {
                       ))}
                     </div>
 
-                    <Button asChild size="lg" className="btn-secondary group">
+                    <Button asChild size="lg" className={`${isUrgence ? 'bg-red-600 hover:bg-red-700 text-white' : 'btn-secondary'} group`}>
                       <Link to="/contact">
                         Demander un devis
                         <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

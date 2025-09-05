@@ -4,8 +4,10 @@ import { Phone, Mail, ArrowRight } from "lucide-react";
 
 const CTASection = () => {
   return (
-    <section className="section-padding bg-gradient-hero text-white">
-      <div className="container-max text-center">
+    <section className="relative section-padding bg-gradient-hero text-white">
+      <div className="absolute inset-0 bg-black/30"></div>
+
+      <div className="relative container-max text-center">
         <div className="max-w-4xl mx-auto space-y-8">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Prêt à optimiser votre installation ?
@@ -13,11 +15,11 @@ const CTASection = () => {
           
           <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
             Contactez-nous dès aujourd'hui pour un devis gratuit et personnalisé. 
-            Nos experts vous accompagnent dans tous vos projets d'eau et d'énergie.
+            Nous vous accompagnons dans tous vos projets d'eau et d'énergie.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-12">
-            <Button asChild size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90 group">
+            <Button asChild size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/85 group">
               <Link to="/contact">
                 <Mail className="mr-2 h-5 w-5" />
                 Demander un devis
@@ -26,7 +28,7 @@ const CTASection = () => {
             </Button>
             
             <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary bg-transparent">
-              <a href="tel:+33123456789">
+              <a href="tel:+33767713317">
                 <Phone className="mr-2 h-5 w-5" />
                 Appeler maintenant
               </a>
@@ -40,7 +42,7 @@ const CTASection = () => {
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold mb-2">Intervention Rapide</div>
-              <p className="text-sm">Service d'urgence 24/7 pour tous vos problèmes</p>
+              <p className="text-sm text-red-500 font-bold">Service d'urgence 7j/7 pour tous vos problèmes</p>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold mb-2">Garantie Qualité</div>

@@ -46,7 +46,9 @@ const About = () => {
     <Layout>
       {/* Hero Section */}
       <section className="relative bg-gradient-hero text-white py-24">
-        <div className="container-max text-center">
+        <div className="absolute inset-0 bg-black/30"></div>
+
+        <div className="relative container-max text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
             À propos d'O TECH Solution
           </h1>
@@ -55,6 +57,7 @@ const About = () => {
           </p>
         </div>
       </section>
+
 
       {/* Story Section */}
       <section className="section-padding">
@@ -174,8 +177,10 @@ const About = () => {
       </section>
 
       {/* Mission Section */}
-      <section className="section-padding bg-gradient-hero text-white">
-        <div className="container-max text-center">
+      <section className="relative section-padding bg-gradient-hero text-white">
+        <div className="absolute inset-0 bg-black/30"></div>
+
+        <div className="relative container-max text-center">
           <div className="max-w-4xl mx-auto space-y-8">
             <h2 className="text-4xl font-bold mb-6">
               Notre Mission

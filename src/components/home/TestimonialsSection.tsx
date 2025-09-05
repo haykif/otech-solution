@@ -4,28 +4,28 @@ import { Star, Quote } from "lucide-react";
 const TestimonialsSection = () => {
   const testimonials = [
     {
-      name: "Marie Dubois",
+      name: "Lucy Hapetian",
       role: "Particulier",
-      location: "Paris 16ème",
+      location: "Annemasse",
       rating: 5,
-      comment: "Service impeccable ! L'équipe d'O TECH a installé notre nouveau système de chauffage en respectant les délais. Très professionnels et de bons conseils.",
+      comment: "Service irréprochable! L'équipe d'O TECH Solution a installé notre nouveau système de chauffage rapidement et dans les délais annoncés. Très professionnels et à l’écoute, il nous a donné de bons conseils pour l’utiliser au mieux et a laissé tout propre derrière eux. Franchement, une intervention efficace et rassurante, je recommande!",
       project: "Installation système de chauffage"
     },
     {
-      name: "Pierre Martin",
-      role: "Gérant de restaurant",
-      location: "Lyon",
-      rating: 5,
-      comment: "Intervention rapide pour une fuite d'eau dans notre cuisine professionnelle. Réparation efficace et tarifs transparents. Je recommande vivement !",
-      project: "Réparation d'urgence"
+      name: "Pierre Dumas",
+      role: "Particulier",
+      location: "St-Jeoire",
+      rating: 4,
+      comment: "J’ai fait installer une cabine de douche par O TECH et franchement, impeccable! Le technicien est arrivé à l’heure, super professionnel et très soigneux. La pose est nickel, tout est stable et bien ajusté. Super service, je recommande!",
+      project: "Installation cabine de douche"
     },
     {
-      name: "Sophie Laurent",
-      role: "Copropriétaire",
-      location: "Marseille",
+      name: "Clara Laurent",
+      role: "Particulier",
+      location: "Thyez",
       rating: 5,
-      comment: "Installation d'un système de traitement d'eau pour notre résidence. Excellent travail, équipe compétente et suivi irréprochable du projet.",
-      project: "Traitement de l'eau"
+      comment: "Fuite énorme ce matin, panique totale… j’ai appelé O TECH et wow! Arrivée rapide, efficace et super sympa. Problème réglé en un rien de temps, mais bon… maintenant il va falloir tout remplacer mes meubles ont pris cher… 😅 Merci quand même pour le sauvetage express!",
+      project: "Dépannage d'urgence"
     }
   ];
 
