@@ -22,10 +22,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Initialiser EmailJS
-  useEffect(() => {
-    emailjs.init('ja_T6EtLaYRHlECtz');
-  }, []);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,43 +40,18 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Nettoyer le numéro de téléphone (enlever le 0 et formater)
-      const cleanPhone = formData.phone ? 
-        formData.phone.replace(/^0/, '+33 ').replace(/\s/g, '') : 
-        "Non renseigné";
-
-      // Email de notification à Otech
-      await emailjs.send(
-        'Otechmailer',
-        'otech_notification_id', // Vous devrez créer ce template
-        {
-          name: formData.name,
-          email: formData.email,
-          phone: cleanPhone,
-          service: formData.service || "Non spécifié",
-          message: formData.message
-        },
-        'ja_T6EtLaYRHlECtz'
-      );
-
-      // Email de confirmation à l'expéditeur
-      await emailjs.send(
-        'Otechmailer',
-        'otech_confirmation_id', // Vous devrez créer ce template
-        {
-          name: formData.name,
-          email: formData.email,
-          service: formData.service || "Non spécifié"
-        },
-        'ja_T6EtLaYRHlECtz'
-      );
-
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      if (!response.ok) {
+        throw new Error('Erreur lors de l\'envoi');
+      }
       toast({
         title: "Message envoyé !",
         description: "Nous vous recontacterons dans les plus brefs délais. Un email de confirmation vous a été envoyé."
       });
-
-      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -87,7 +59,6 @@ const Contact = () => {
         service: "",
         message: ""
       });
-
     } catch (error) {
       console.error('Erreur lors de l\'envoi:', error);
       toast({
