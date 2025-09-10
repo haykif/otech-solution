@@ -31,7 +31,7 @@ const Footer = () => {
               "Eau maîtrisée, énergie optimisée"
             </p>
             <p className="text-sm text-muted-foreground">
-              Expert en plomberie, traitement de l'eau et optimisation énergétique. 
+              Expert en plomberie et optimisation énergétique. 
               Solutions durables pour particuliers et professionnels.
             </p>
           </div>
