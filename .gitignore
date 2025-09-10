@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+!node_modules/leaflet/src/images/marker.svg
 
 # Editor directories and files
 .vscode/*
