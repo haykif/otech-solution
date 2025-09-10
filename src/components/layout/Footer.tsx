@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin} from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -57,7 +57,7 @@ const Footer = () => {
               <p className="text-sm text-muted-foreground">Plomberie & Installation Sanitaire</p>
               <p className="text-sm text-muted-foreground">Dépannage <span className="text-red-500 font-bold">URGENT</span> 7j/7</p>
               <p className="text-sm text-muted-foreground">Systèmes énergétiques</p>
-              <p className="text-sm text-muted-foreground">Maintenance préventive</p>
+              <p className="text-sm text-muted-foreground">Climatisation</p>
             </nav>
           </div>
 
@@ -99,16 +99,16 @@ const Footer = () => {
             </p>
             <div className="flex space-x-6">
               <Link
-                to="/legal"
+                to="/mentions-legales"
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 Mentions légales
               </Link>
               <Link
-                to="/privacy"
+                to="/politique-confidentialite"
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
-                Confidentialité
+                Politique de confidentialité
               </Link>
             </div>
           </div>

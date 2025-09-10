@@ -1,12 +1,106 @@
+import React from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { Wrench, Thermometer, Settings, Check, ArrowRight, AlertTriangle } from "lucide-react";
-import plumbingImage from "@/assets/plumbing-service.jpg";
+import { Wrench, Thermometer, Check, ArrowRight, AlertTriangle, Snowflake } from "lucide-react";
 import tapisBleu from "@/assets/tapis_bleu.webp";
 import chaufferieGeant from "@/assets/chaufferie_geant.webp";
 import cabineMagenta from "@/assets/cabine-magenta.webp";
+import soudure from "@/assets/soudure.webp";
+import img0093 from "@/assets/caroussel_image/IMG_0093.webp";
+import img0094 from "@/assets/caroussel_image/IMG_0094.webp";
+import img0096 from "@/assets/caroussel_image/IMG_0096.webp";
+import img0099 from "@/assets/caroussel_image/IMG_0099.webp";
+import img2512 from "@/assets/caroussel_image/IMG_2512.webp";
+import img2513 from "@/assets/caroussel_image/IMG_2513.webp";
+import img2514 from "@/assets/caroussel_image/IMG_2514.webp";
+import img2516 from "@/assets/caroussel_image/IMG_2516.webp";
+import img2517 from "@/assets/caroussel_image/IMG_2517.webp";
+import img2518 from "@/assets/caroussel_image/IMG_2518.webp";
+import img2519 from "@/assets/caroussel_image/IMG_2519.webp";
+import img2521 from "@/assets/caroussel_image/IMG_2521.webp";
+import img2522 from "@/assets/caroussel_image/IMG_2522.webp";
+import img2580 from "@/assets/caroussel_image/IMG_2580.webp";
+import img3026 from "@/assets/caroussel_image/IMG_3026.webp";
+import img3027 from "@/assets/caroussel_image/IMG_3027.webp";
+import img3028 from "@/assets/caroussel_image/IMG_3028.webp";
+import img3029 from "@/assets/caroussel_image/IMG_3029.webp";
+import img3030 from "@/assets/caroussel_image/IMG_3030.webp";
+import img3099 from "@/assets/caroussel_image/IMG_3099.webp";
+import img3533 from "@/assets/caroussel_image/IMG_3533.webp";
+import img3538 from "@/assets/caroussel_image/IMG_3538.webp";
+import img5155 from "@/assets/caroussel_image/IMG_5155.webp";
+import img5156 from "@/assets/caroussel_image/IMG_5156.webp";
+import img5157 from "@/assets/caroussel_image/IMG_5157.webp";
+import img5158 from "@/assets/caroussel_image/IMG_5158.webp";
+import img5160 from "@/assets/caroussel_image/IMG_5160.webp";
+import img5181 from "@/assets/caroussel_image/IMG_5181.webp";
+import img6950 from "@/assets/caroussel_image/IMG_6950.webp";
+import img6951 from "@/assets/caroussel_image/IMG_6951.webp";
+import img6995 from "@/assets/caroussel_image/IMG_6995.webp";
+import img6997 from "@/assets/caroussel_image/IMG_6997.webp";
+import img6999 from "@/assets/caroussel_image/IMG_6999.webp";
+import img7002 from "@/assets/caroussel_image/IMG_7002.webp";
+import img7976 from "@/assets/caroussel_image/IMG_7976.webp";
+import img8552 from "@/assets/caroussel_image/IMG_8552.webp";
+import img8553 from "@/assets/caroussel_image/IMG_8553.webp";
+import img8730 from "@/assets/caroussel_image/IMG_8730.webp";
+import ImageCarousel from "@/components/ui/ImageCarousel";
+
+// Images pour le carrousel (hors logo, soudure, hero-image)
+const carrouselImagesRaw = [
+  cabineMagenta,
+  chaufferieGeant,
+  tapisBleu,
+  img0093,
+  img0094,
+  img0096,
+  img0099,
+  img2512,
+  img2513,
+  img2514,
+  img2516,
+  img2517,
+  img2518,
+  img2519,
+  img2521,
+  img2522,
+  img2580,
+  img3026,
+  img3027,
+  img3028,
+  img3029,
+  img3030,
+  img3099,
+  img3533,
+  img3538,
+  img5155,
+  img5156,
+  img5157,
+  img5158,
+  img5160,
+  img5181,
+  img6950,
+  img6951,
+  img6995,
+  img6997,
+  img6999,
+  img7002,
+  img7976,
+  img8552,
+  img8553,
+  img8730,
+];
+
+// Mélange le tableau à chaque chargement
+function shuffleArray(array: any[]) {
+  return array
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+}
+
+const carrouselImages = shuffleArray(carrouselImagesRaw);
 
 const Services = () => {
   const services = [
@@ -28,7 +122,7 @@ const Services = () => {
     {
       icon: AlertTriangle,
       title: "Dépannage d'urgence 7j/7",
-      image: plumbingImage,
+      image: soudure, // image de secours si besoin
       description: "Intervention express pour pannes et fuites critiques: détection, sécurisation et remise en service. Nous intervenons 7j/7 pour limiter les dégâts et rétablir la situation.",
       features: [
         "Recherche et réparation de fuites",
@@ -56,19 +150,20 @@ const Services = () => {
       price: "À partir de 1200€"
     },
     {
-      icon: Settings,
-      title: "Maintenance Préventive",
-      image: cabineMagenta,
-      description: "Programmes de maintenance personnalisés pour assurer la longévité et l'efficacité optimale de toutes vos installations eau et énergie.",
+      icon: Snowflake,
+      title: "Climatisation",
+      image: cabineMagenta, // Remplacer par une image de clim si disponible
+      description: "Installation de systèmes de climatisation pour un confort optimal toute l'année, chez les particuliers et professionnels. Solutions sur mesure adaptées à vos besoins.",
       features: [
-        "Diagnostic complet des installations",
-        "Entretien spécialisé",
-        "Conseils d'utilisation optimale",
-        "Rapport détaillé après intervention"
+        "Installation de climatiseurs split et multisplit",
+        "Conseils personnalisés",
+        "Solutions sur mesure"
       ],
-      price: "À partir de 150€"
+      price: "À partir de 350€"
     }
   ];
+
+
 
   return (
     <Layout>
@@ -100,7 +195,6 @@ const Services = () => {
               const IconComponent = service.icon;
               const isEven = index % 2 === 0;
               const isUrgence = service.title.toLowerCase().includes("dépannage");
-              
               return (
                 <div key={index} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${!isEven ? 'lg:grid-flow-row-dense' : ''}`}>
                   {/* Image */}
@@ -154,6 +248,10 @@ const Services = () => {
                 </div>
               );
             })}
+          </div>
+          {/* Carrousel juste après la section services, sous la climatisation */}
+          <div className="my-12">
+            <ImageCarousel images={carrouselImages} altPrefix="Climatisation" />
           </div>
         </div>
       </section>

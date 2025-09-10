@@ -311,11 +311,10 @@ const Contact = () => {
                             <SelectValue placeholder="Sélectionnez un service" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="plomberie">Plomberie & Installation</SelectItem>
-                            <SelectItem value="traitement-eau">Traitement de l'eau</SelectItem>
-                            <SelectItem value="energie">Systèmes énergétiques</SelectItem>
-                            <SelectItem value="maintenance">Maintenance préventive</SelectItem>
+                            <SelectItem value="plomberie">Plomberie & Installation Sanitaire</SelectItem>
                             <SelectItem value="urgence">Dépannage d'urgence</SelectItem>
+                            <SelectItem value="energie">Systèmes énergétiques</SelectItem>
+                            <SelectItem value="climatisation">Climatisation</SelectItem>
                             <SelectItem value="autre">Autre</SelectItem>
                           </SelectContent>
                         </Select>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Wrench, Thermometer, Settings, ArrowRight, AlertTriangle } from "lucide-react";
+import { Wrench, Thermometer, Settings, ArrowRight, AlertTriangle, Snowflake } from "lucide-react";
 
 const ServicesPreview = () => {
   const services = [
@@ -21,13 +21,13 @@ const ServicesPreview = () => {
       icon: Thermometer,
       title: "Systèmes Énergétiques",
       description: "Solutions de chauffage éco-responsables et systèmes d'optimisation énergétique pour réduire votre consommation.",
-      features: ["Chauffage efficace", "Pompes à chaleur", "Optimisation énergétique", "Climatiseur"]
+      features: ["Chauffage efficace", "Pompes à chaleur", "Optimisation énergétique"]
     },
     {
-      icon: Settings,
-      title: "Maintenance Préventive",
-      description: "Maintenance planifiée pour prolonger la durée de vie de vos équipements, assurer leur performance et optimiser leur efficacité.",
-      features: ["Contrôles réguliers", "Diagnostic intégrale", "Conseils personnalisés"]
+      icon: Snowflake,
+      title: "Climatisation",
+      description: "Installation de systèmes de climatisation pour garantir un air frais et sain toute l'année, adaptés à vos besoins résidentiels ou professionnels.",
+      features: ["Installation de climatiseurs split et multisplit", "Conseils personnalisés", "Solutions sur mesure"]
     }
   ];
 
