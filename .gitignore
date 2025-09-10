@@ -19,7 +19,7 @@ lerna-debug.log*
 
 # Ré-inclure le fichier 'marker.svg'
 !node_modules/leaflet/dist/images/marker-icon-2x.png
-!!node_modules/leaflet/dist/images/marker-shadow.png
+!node_modules/leaflet/dist/images/marker-shadow.png
 
 # Maintenant, vous pouvez ajouter les exclusions pour ignorer le reste du dossier node_modules
 # Et d'autres règles
