@@ -7,11 +7,25 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+# Je refuse de commiter node_modules
+# Ré-inclure le dossier 'leaflet' pour que Git puisse l'inspecter
+!node_modules/leaflet/
+
+# Ré-inclure le dossier 'src' pour que Git puisse l'inspecter
+!node_modules/leaflet/src/
+
+# Ré-inclure le dossier 'images' pour que Git puisse l'inspecter
+!node_modules/leaflet/src/images/
+
+# Ré-inclure le fichier 'marker.svg'
+!node_modules/leaflet/src/images/marker.svg
+
+# Maintenant, vous pouvez ajouter les exclusions pour ignorer le reste du dossier node_modules
+# Et d'autres règles
+node_modules/
 dist
 dist-ssr
 *.local
-!node_modules/leaflet/src/images/marker.svg
 
 # Editor directories and files
 .vscode/*
