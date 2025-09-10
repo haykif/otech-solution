@@ -11,14 +11,15 @@ lerna-debug.log*
 # Ré-inclure le dossier 'leaflet' pour que Git puisse l'inspecter
 !node_modules/leaflet/
 
-# Ré-inclure le dossier 'src' pour que Git puisse l'inspecter
-!node_modules/leaflet/src/
+# Ré-inclure le dossier 'dist' pour que Git puisse l'inspecter
+!node_modules/leaflet/dist/
 
 # Ré-inclure le dossier 'images' pour que Git puisse l'inspecter
-!node_modules/leaflet/src/images/
+!node_modules/leaflet/dist/images/
 
 # Ré-inclure le fichier 'marker.svg'
-!node_modules/leaflet/src/images/marker.svg
+!node_modules/leaflet/dist/images/marker-icon-2x.png
+!!node_modules/leaflet/dist/images/marker-shadow.png
 
 # Maintenant, vous pouvez ajouter les exclusions pour ignorer le reste du dossier node_modules
 # Et d'autres règles
