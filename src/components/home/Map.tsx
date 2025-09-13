@@ -6,8 +6,8 @@ import { useEffect } from "react";
 import L from "leaflet"; // Garde pour fixer les icônes
 
 const points: [number, number][] = [
-  [46.0626, 6.5736], // Cluses
-  [46.1944, 6.2360], // Annemasse
+  [46.068347, 6.573815], // Cluses
+  [46.199988, 6.239267], // Annemasse
 ];
 
 function FitToBounds() {
