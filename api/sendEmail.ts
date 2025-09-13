@@ -22,7 +22,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             name,
             email,
             phone: cleanPhone,
-            service: service || "Non spécifié",
+            service: service || "Belirtilmedi,
             message,
         },
         {
