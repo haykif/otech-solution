@@ -3,7 +3,7 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useEffect } from "react";
-import L from "leaflet"; // Ajoute ça pour fixer les icônes
+import L from "leaflet"; // Garde pour fixer les icônes
 
 const points: [number, number][] = [
   [46.0626, 6.5736], // Cluses
@@ -20,12 +20,12 @@ function FitToBounds() {
 
 export default function Map() {
   useEffect(() => {
-    // Fix des icônes Leaflet pour Next.js/Vercel
+    // Fix des icônes Leaflet pour Next.js/Vercel – URLs absolues, pas de require
     delete L.Icon.Default.prototype._getIconUrl;
     L.Icon.Default.mergeOptions({
-      iconRetinaUrl: require("public/assets/marker-icon-2x.png"),
-      iconUrl: require("public/assets/marker-icon.png"),
-      shadowUrl: require("public/assets/marker-shadow.png"),
+      iconRetinaUrl: '/assets/marker-icon-2x.png',
+      iconUrl: '/assets/marker-icon.png',
+      shadowUrl: '/assets/marker-shadow.png',
     });
   }, []); // Vide pour que ça run qu'une fois
 
