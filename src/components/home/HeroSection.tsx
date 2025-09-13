@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Droplets, Zap, Shield } from "lucide-react";
-import heroImage from "@/assets/hero-image.png";
+import heroImage from "@/assets/hero-image.jpeg";
 
 const HeroSection = () => {
   return (
@@ -23,7 +23,7 @@ const HeroSection = () => {
           {/* Main Title with Logo */}
           <div className="flex items-center justify-center space-x-6 mb-4">
             <img 
-              src="/assets/otech_logo.webp" 
+              src="/assets/otech_logo.jpeg" 
               alt="Logo Otech" 
               className="h-14 w-14 md:h-28 md:w-28 drop-shadow-lg" 
             />

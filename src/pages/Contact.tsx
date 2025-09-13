@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,7 +9,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
 import Map from "@/components/home/Map";
-import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -18,24 +17,18 @@ const Contact = () => {
     email: "",
     phone: "",
     service: "",
-    message: ""
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Initialiser EmailJS + token
-  useEffect(() => {
-    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_TOKEN);
-  }, []);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Simple validation
+
     if (!formData.name || !formData.email || !formData.message) {
       toast({
         title: "Erreur",
         description: "Veuillez remplir tous les champs obligatoires.",
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
@@ -43,57 +36,36 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Nettoyer le numéro de téléphone (enlever le 0 et formater)
-      const cleanPhone = formData.phone ? 
-        formData.phone.replace(/^0/, '+33 ').replace(/\s/g, '') : 
-        "Non renseigné";
-
-      // Email de notification à Otech
-      await emailjs.send(
-        'Otechmailer',
-        'otech_notification_id', // Vous devrez créer ce template
-        {
-          name: formData.name,
-          email: formData.email,
-          phone: cleanPhone,
-          service: formData.service || "Belirtilmedi",
-          message: formData.message
-        },
-        process.env.NEXT_PUBLIC_EMAILJS_TOKEN
-      );
-
-      // Email de confirmation à l'expéditeur
-      await emailjs.send(
-        'Otechmailer',
-        'otech_confirmation_id', // Vous devrez créer ce template
-        {
-          name: formData.name,
-          email: formData.email,
-          service: formData.service || "Non spécifié"
-        },
-        process.env.NEXT_PUBLIC_EMAILJS_TOKEN
-      );
-
-      toast({
-        title: "Message envoyé !",
-        description: "Nous vous recontacterons dans les plus brefs délais. Un email de confirmation vous a été envoyé."
+      const res = await fetch("/api/sendEmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
 
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        service: "",
-        message: ""
-      });
+      const data = await res.json();
 
-    } catch (error) {
-      console.error('Erreur lors de l\'envoi:', error);
+      if (data.success) {
+        toast({
+          title: "Message envoyé ✅",
+          description: "Nous vous recontacterons rapidement. Un email de confirmation vous a été envoyé.",
+        });
+
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          service: "",
+          message: "",
+        });
+      } else {
+        throw new Error(data.error || "Erreur inconnue");
+      }
+    } catch (err) {
+      console.error("Erreur lors de l'envoi:", err);
       toast({
         title: "Erreur",
-        description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer ou nous contacter directement.",
-        variant: "destructive"
+        description: "Impossible d’envoyer le message. Réessaie ou contacte-nous directement.",
+        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
@@ -101,23 +73,23 @@ const Contact = () => {
   };
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const contactInfo = [
     {
-      icon: Phone, 
+      icon: Phone,
       title: "Téléphone",
       details: "07 67 71 33 17",
       description: "Service d'urgence 24h/24",
-      link: "tel:0767713317"
+      link: "tel:0767713317",
     },
     {
       icon: Mail,
       title: "Email",
       details: "contact@otech-solution.com",
       description: "Réponse entre 24h et 48h",
-      link: "mailto:contact@otech-solution.com"
+      link: "mailto:contact@otech-solution.com",
     },
     {
       icon: MapPin,
@@ -126,20 +98,20 @@ const Contact = () => {
       description: "Cluses et Annemasse",
       links: [
         "https://www.google.com/maps/search/?api=1&query=1%20Rue%20Raymond%20Poincar%C3%A9%2C%2074300%20Cluses",
-        "https://www.google.com/maps/search/?api=1&query=3%20Rue%20des%20Fr%C3%A8res%20Tassil%2C%2074100%20Annemasse"
+        "https://www.google.com/maps/search/?api=1&query=3%20Rue%20des%20Fr%C3%A8res%20Tassil%2C%2074100%20Annemasse",
       ],
       labels: [
         "1 Rue Raymond Poincaré, 74300 Cluses",
-        "3 Rue des Frères Tassil, 74100 Annemasse"
-      ]
+        "3 Rue des Frères Tassil, 74100 Annemasse",
+      ],
     },
     {
       icon: Clock,
       title: "Horaires",
       details: "Lun-Ven: 8h-18h, Sam: 9h-16h",
       description: "Urgences 7j/7 24h/24",
-      link: null
-    }
+      link: null,
+    },
   ];
 
   return (
@@ -149,15 +121,12 @@ const Contact = () => {
         <div className="absolute inset-0 bg-black/30"></div>
 
         <div className="relative container-max text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Contactez-nous
-          </h1>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">Contactez-nous</h1>
           <p className="text-xl md:text-2xl max-w-3xl mx-auto text-white/90">
             Besoin d'un devis ou d'une intervention ? Notre équipe est à votre écoute
           </p>
         </div>
       </section>
-
 
       {/* Contact Info Section */}
       <section className="section-padding bg-gradient-to-br from-primary/5 to-accent/10">
@@ -194,8 +163,8 @@ const Contact = () => {
                       <a
                         href={(info as any).link}
                         className="text-primary font-medium hover:text-accent transition-colors"
-                        target={info.title === 'Email' ? undefined : "_blank"}
-                        rel={info.title === 'Email' ? undefined : "noreferrer"}
+                        target={info.title === "Email" ? undefined : "_blank"}
+                        rel={info.title === "Email" ? undefined : "noreferrer"}
                       >
                         {info.details}
                       </a>
@@ -259,8 +228,7 @@ const Contact = () => {
                     Demande de devis gratuit
                   </CardTitle>
                   <p className="text-muted-foreground">
-                    Remplissez ce formulaire et nous vous recontacterons rapidement 
-                    avec une proposition personnalisée.
+                    Remplissez ce formulaire et nous vous recontacterons rapidement avec une proposition personnalisée.
                   </p>
                 </CardHeader>
                 <CardContent>
@@ -336,9 +304,25 @@ const Contact = () => {
                     <Button type="submit" size="lg" className="w-full btn-hero group" disabled={isSubmitting}>
                       {isSubmitting ? (
                         <>
-                          <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          <svg
+                            className="animate-spin h-5 w-5 text-white"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                            ></circle>
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
                           </svg>
                           Envoi en cours...
                         </>
@@ -354,46 +338,6 @@ const Contact = () => {
                       * Champs obligatoires. Nous nous engageons à vous répondre sous 24h.
                     </p>
                   </form>
-                </CardContent>
-              </Card>
-
-              {/* FAQ */}
-              <Card className="shadow-medium mt-8">
-                <CardHeader>
-                  <CardTitle className="text-xl font-bold text-foreground">
-                    Questions fréquentes
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-2">
-                        Les devis sont-ils vraiment gratuits ?
-                      </h4>
-                      <p className="text-sm text-muted-foreground">
-                        Oui, tous nos devis sont gratuits et sans engagement. 
-                        Nous nous déplaçons pour évaluer vos besoins.
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-2">
-                        Quels sont vos délais d'intervention ?
-                      </h4>
-                      <p className="text-sm text-muted-foreground">
-                        Pour les urgences : intervention sous 2h. 
-                        Pour les projets planifiés : sous 48h à 1 semaine.
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-2">
-                        Proposez-vous des facilités de paiement ?
-                      </h4>
-                      <p className="text-sm text-muted-foreground">
-                        Oui, nous proposons des solutions de financement 
-                        et des facilités de paiement pour tous vos projets.
-                      </p>
-                    </div>
-                  </div>
                 </CardContent>
               </Card>
             </div>
