@@ -23,9 +23,9 @@ export default function Map() {
     // Fix des icônes Leaflet pour Next.js/Vercel
     delete L.Icon.Default.prototype._getIconUrl;
     L.Icon.Default.mergeOptions({
-      iconRetinaUrl: require("public/assets/marker-icon-2x.png"),
-      iconUrl: require("public/assets/marker-icon.png"),
-      shadowUrl: require("public/assets/images/marker-shadow.png"),
+      iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+      iconUrl: require("leaflet/dist/images/marker-icon.png"),
+      shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
     });
   }, []); // Vide pour que ça run qu'une fois
 
