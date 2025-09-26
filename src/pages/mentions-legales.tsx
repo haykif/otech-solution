@@ -34,8 +34,7 @@ export default function MentionsLegales() {
 					<section className="mb-6">
 						<h2 className="text-2xl font-semibold mb-2">Hébergement</h2>
 						<p className="text-sm text-foreground leading-relaxed">
-							Le site est hébergé par : <br />
-							<a href="https://www.vercel.com"><strong>Vercel</strong></a><br />
+							Le site est hébergé par : <a href="https://www.vercel.com" className="text-primary"><strong>Vercel</strong></a><br />
 						</p>
 					</section>
 
