@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Wrench, Thermometer, Settings, ArrowRight, AlertTriangle, Snowflake } from "lucide-react";
+import { Wrench, Thermometer, ArrowRight, AlertTriangle, Snowflake } from "lucide-react";
 
 const ServicesPreview = () => {
   const services = [
