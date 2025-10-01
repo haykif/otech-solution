@@ -1,4 +1,16 @@
 User-agent: *
+# Autorise l'exploration de tout le site
 Allow: /
 
+# Empêche l'accès aux fichiers sensibles
+Disallow: /api/
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /private/
+Disallow: /*.env$
+Disallow: /*.git$
+Disallow: /*.DS_Store$
+Disallow: /*node_modules/
+
+# Indique le sitemap
 Sitemap: https://otech-solution.com/sitemap.xml
