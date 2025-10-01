@@ -24,7 +24,7 @@ const Header = () => {
           <Link to="/" className="flex items-center space-x-1 group pl-2 md:pl-0">
             <div className="flex items-center space-x-1">
               <img
-                src="/assets/otech_logo.webp"
+                src="/assets/otech_logo_little.webp"
                 alt="Logo Otech"
                 className="h-8 w-8 group-hover:opacity-80 transition-opacity duration-300"
               />

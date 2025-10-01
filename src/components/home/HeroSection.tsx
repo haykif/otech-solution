@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Droplets, Zap, Shield } from "lucide-react";
-import heroImage from "@/assets/hero-image.jpeg";
+import heroImage from "@/assets/hero-image.webp";
 
 const HeroSection = () => {
   return (
