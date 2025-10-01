@@ -80,6 +80,7 @@ const Header = () => {
 
             {/* Mobile menu button */}
             <Button
+              name="MenuHamburger"
               variant="ghost"
               size="sm"
               className="md:hidden"
