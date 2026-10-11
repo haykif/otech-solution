@@ -9,7 +9,7 @@ export default function MentionsLegales() {
 				<div className="max-w-3xl mx-auto">
 					<h1 className="text-4xl font-bold mb-6">Mentions légales</h1>
 
-					<p className="text-sm text-muted-foreground mb-4">Dernière mise à jour : {lastUpdated}</p>
+					<p className="text-sm text-muted-foreground mb-4">Dernière mise à jour : {createdAt}</p>
 
 					<section className="mb-6">
 						<h2 className="text-2xl font-semibold mb-2">Éditeur du site</h2>
@@ -20,7 +20,7 @@ export default function MentionsLegales() {
 							Téléphone : <strong>07 67 71 33 17</strong><br />
 							Email : <strong>contact@otech-solution.com</strong><br />
 							Numéro SIRET : <strong>503 637 001 00044</strong><br />
-							TVA intracommunautaire : <strong>Pas de n° TVA valide connu</strong>
+							TVA intracommunautaire : <strong>Non soumis à la TVA</strong>
 						</p>
 					</section>
 

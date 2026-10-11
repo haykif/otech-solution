@@ -92,6 +92,13 @@ const Contact = () => {
       link: "tel:0767713317",
     },
     {
+      icon: Phone,
+      title: "Téléphone",
+      details: "07 69 39 22 14",
+      description: "Contact Technicien",
+      link: "tel:0769392214",
+    },
+    {
       icon: Mail,
       title: "Email",
       details: "contact@otech-solution.com",
@@ -219,7 +226,7 @@ const Contact = () => {
                       <li>• Samoëns</li>
                       <li>• Sallanches</li>
                       <li>• Chamonix-Mont-Blanc</li>
-                      <li>• Megeve</li>
+                      <li>• Megève</li>
                       <li>• ...</li>
                     </ul>
                   </div>

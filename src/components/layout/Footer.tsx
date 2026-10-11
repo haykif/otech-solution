@@ -70,6 +70,10 @@ const Footer = () => {
                 <Link to="tel:0767713317" className="text-sm text-muted-foreground">07 67 71 33 17</Link>
               </div>
               <div className="flex items-center space-x-3">
+                <Phone className="h-4 w-4 text-primary" />
+                <Link to="tel:0769392214" className="text-sm text-muted-foreground">07 69 39 22 14</Link>
+              </div>
+              <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-primary" />
                 <Link to="mailto:contact@otech-solution.com" className="text-sm text-muted-foreground">contact@otech-solution.com</Link>
               </div>

@@ -19,9 +19,9 @@ const ServicesPreview = () => {
     },
     {
       icon: Thermometer,
-      title: "Systèmes Énergétiques",
+      title: "Systèmes Énergétiques & Renouvelables",
       description: "Solutions de chauffage éco-responsables et systèmes d'optimisation énergétique pour réduire votre consommation.",
-      features: ["Chauffage efficace", "Pompes à chaleur", "Optimisation énergétique"]
+      features: ["Chauffage efficace", "Pompes à chaleur", "Optimisation énergétique", "Chauffe-eau intelligent"]
     },
     {
       icon: Snowflake,
