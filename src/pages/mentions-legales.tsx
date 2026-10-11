@@ -9,7 +9,7 @@ export default function MentionsLegales() {
 				<div className="max-w-3xl mx-auto">
 					<h1 className="text-4xl font-bold mb-6">Mentions légales</h1>
 
-					<p className="text-sm text-muted-foreground mb-4">Dernière mise à jour : {createdAt}</p>
+					<p className="text-sm text-muted-foreground mb-4">Dernière mise à jour : {lastUpdated}</p>
 
 					<section className="mb-6">
 						<h2 className="text-2xl font-semibold mb-2">Éditeur du site</h2>
